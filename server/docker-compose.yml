@@ -1,0 +1,13 @@
+# /server/docker-compose.yml — local MongoDB for development
+services:
+  mongo:
+    image: mongo:7
+    container_name: social_logins_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - social_logins_mongo_data:/data/db
+
+volumes:
+  social_logins_mongo_data:

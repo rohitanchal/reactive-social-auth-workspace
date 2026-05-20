@@ -1,0 +1,17 @@
+# Dependency Directories
+node_modules/
+.angular/
+
+# Environmental Secrets (NEVER PUSH THIS)
+.env
+*.env.local
+
+# Production Build Outputs
+dist/
+/server/dist
+
+# IDE and OS Cache Files
+.DS_Store
+.vscode/
+.idea/
+npm-debug.log*
