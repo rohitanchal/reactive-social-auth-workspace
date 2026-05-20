@@ -31,7 +31,6 @@ npm install
 
 
 Create a .env file in the /server root directory:
-
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/your_db
 JWT_SECRET=your_jwt_secret
@@ -46,26 +45,14 @@ GITHUB_CLIENT_SECRET=your_github_secret
 
 
 Run the server:
-
 npm run dev
 
 
 
 2. Frontend Angular Setup
-
 cd frontend
 npm install
 ng serve
 
 
 Open http://localhost:4200 inside your web browser.
-
----
-
-### 📤 Isko GitHub par update karne ki commands:
-File save karne ke baad terminal mein bas yeh simple steps chala dijiye taaki naya chhota README upload ho jaye:
-
-```bash
-git add README.md
-git commit -m "docs: clean and shorten README documentation"
-git push origin main
