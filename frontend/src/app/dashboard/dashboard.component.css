@@ -1,0 +1,5 @@
+/* Dashboard-specific tweaks beyond Bootstrap */
+
+.navbar-brand {
+  letter-spacing: 0.02em;
+}

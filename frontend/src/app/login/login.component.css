@@ -1,0 +1,9 @@
+/* frontend/src/app/login/login.component.css — fine-tuning on top of Bootstrap 5 */
+
+a.btn {
+  text-decoration: none;
+}
+
+a.btn:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.35);
+}

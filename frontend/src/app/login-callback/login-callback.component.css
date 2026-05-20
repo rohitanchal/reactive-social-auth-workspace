@@ -1,0 +1,7 @@
+.callback {
+  min-height: 40vh;
+  display: grid;
+  place-items: center;
+  font-family: system-ui, sans-serif;
+  color: #334155;
+}

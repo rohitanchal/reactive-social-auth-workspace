@@ -1,0 +1,114 @@
+@if (state$ | async; as state) {
+<div class="min-vh-100 d-flex flex-column bg-light">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm px-3 px-lg-4"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2 mb-0" routerLink="/dashboard">
+        <span
+          class="d-inline-flex align-items-center justify-content-center rounded-2 bg-white text-dark small fw-bold"
+          style="width: 2rem; height: 2rem"
+          aria-hidden="true"
+          >SL</span
+        >
+        <span class="d-none d-sm-inline">Secure Workspace</span>
+        <span class="d-inline d-sm-none">Workspace</span>
+      </a>
+
+      @if (state.user) {
+        <div
+          class="d-flex flex-wrap align-items-center gap-3 ms-auto mt-3 mt-lg-0 pt-3 pt-lg-0 border-top border-secondary border-lg-0 w-100 w-lg-auto justify-content-between justify-content-lg-end"
+        >
+          <div class="d-flex align-items-center gap-2 min-w-0">
+            <img
+              class="rounded-circle border border-secondary flex-shrink-0 bg-secondary"
+              [src]="avatarSrc(state.user)"
+              width="35"
+              height="35"
+              style="object-fit: cover"
+              alt=""
+            />
+            <div class="text-white small lh-sm min-w-0">
+              <div class="fw-semibold text-truncate">{{ state.user.displayName }}</div>
+              <div class="text-white-50 text-truncate d-none d-md-block" style="max-width: 14rem">
+                {{ state.user.email ?? 'No email on file' }}
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-light btn-sm flex-shrink-0"
+            (click)="logout()"
+          >
+            Sign out
+          </button>
+        </div>
+      } @else {
+        <button type="button" class="btn btn-outline-light btn-sm ms-auto mt-3 mt-lg-0" (click)="logout()">
+          Sign out
+        </button>
+      }
+    </div>
+  </nav>
+
+  <main class="flex-grow-1">
+    <div class="container my-5">
+      @if (state.user) {
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8 col-xl-7">
+            <div class="card border-0 shadow-sm">
+              <div class="card-body p-4 p-md-5 text-center">
+                <img
+                  class="rounded-circle shadow-sm mb-3 bg-light border"
+                  [src]="avatarSrc(state.user)"
+                  width="120"
+                  height="120"
+                  style="object-fit: cover"
+                  alt=""
+                />
+                <h2 class="card-title fw-bold h3 mb-2">{{ state.user.displayName }}</h2>
+                <p class="card-subtitle text-muted mb-3">
+                  {{ state.user.email ?? 'Verified email not available' }}
+                </p>
+                <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-4">
+                  <span [class]="badgeClassList(state.user).join(' ')">{{ badgeLabel(state.user) }}</span>
+                  @if (state.user.emailVerified) {
+                    <span class="badge bg-success bg-opacity-10 text-success border border-success">
+                      Email verified
+                    </span>
+                  } @else {
+                    <span class="badge bg-warning text-dark">Email unverified</span>
+                  }
+                </div>
+
+                <dl class="row text-start small mb-0 gx-3">
+                  <dt class="col-sm-4 text-muted">User ID</dt>
+                  <dd class="col-sm-8 font-monospace text-break">{{ state.user.id }}</dd>
+                  <dt class="col-sm-4 text-muted">Last sign-in</dt>
+                  <dd class="col-sm-8">{{ state.user.lastLoginAt ?? '—' }}</dd>
+                  <dt class="col-sm-4 text-muted">Linked providers</dt>
+                  <dd class="col-sm-8">
+                    <div class="d-flex flex-wrap gap-1">
+                      @for (p of state.user.linkedProviders; track p) {
+                        <span class="badge rounded-pill text-bg-light border text-capitalize">{{ p }}</span>
+                      }
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="alert alert-warning shadow-sm mb-0" role="alert">
+              Profile data is not available. You will be redirected to sign in momentarily.
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+</div>
+}
